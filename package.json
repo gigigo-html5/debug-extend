@@ -1,0 +1,15 @@
+{
+  "name": "debug-extend",
+  "version": "0.0.1",
+  "description": "Extends debug with verbosity levels",
+  "main": "debug-extend.js",
+  "dependencies": {
+    "debug": "^2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
