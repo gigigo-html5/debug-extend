@@ -2,21 +2,13 @@
 
 var Debug = require('debug')
 
-//Available levels
-var levels = ['','ERROR','WARN','INFO','_DEBUG_','VERBOSE']
-
 //Level select
 var level = 5
 Debug.level = function(n){
     level = Math.min(5,Math.max(0,n|0))
 }
 
-// //Set level from env
-// if (process.env.DEBUG_LEVEL){
-//     Debug.level(process.env.DEBUG_LEVEL)
-// }
-
-
+//Initial defined level
 //Detect if we are using debug in browser
 if (Debug.storage) {
     try {
@@ -57,28 +49,28 @@ function initLevels(debug){
 
 function _error(){
     var args = Array.prototype.slice.call(arguments)
-    args.unshift(levels[1])
+    args.unshift('ERROR')
     if (level>=1)
         this.apply(this,args)
 }
 
 function _warn(){
     var args = Array.prototype.slice.call(arguments)
-    args.unshift(levels[2])
+    args.unshift('WARN')
     if (level>=2)
         this.apply(this,args)
 }
 
 function _info(){
     var args = Array.prototype.slice.call(arguments)
-    args.unshift(levels[3])
+    args.unshift('INFO')
     if (level>=3)
         this.apply(this,args)
 }
 
 function _verbose(){
     var args = Array.prototype.slice.call(arguments)
-    args.unshift(levels[5])
+    args.unshift('VERBOSE')
     if (level>=5)
         this.apply(this,args)
 }
