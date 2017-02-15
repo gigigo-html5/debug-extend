@@ -11,16 +11,31 @@ Debug.level = function(n){
     level = Math.min(5,Math.max(0,n|0))
 }
 
-//Set level from env
-if (process.env.DEBUG_LEVEL){
-    Debug.level(process.env.DEBUG_LEVEL)
+// //Set level from env
+// if (process.env.DEBUG_LEVEL){
+//     Debug.level(process.env.DEBUG_LEVEL)
+// }
+
+
+//Detect if we are using debug in browser
+if (Debug.storage) {
+    try {
+        let userLevel = Debug.storage.getItem('debug-level')
+        if (userLevel){
+            Debug.level(userLevel)
+        }
+    } catch(e) {}
+}else{
+    if (process.env.DEBUG_LEVEL){
+        Debug.level(process.env.DEBUG_LEVEL)
+    }
 }
 
 
 //Filter legacy debug as level 4
 var _log = Debug.log
-Debug.log = function(args){
-    if (level < 4 && !/(ERROR|WARN|INFO|VERBOSE)$/.test(arguments[0]) )
+Debug.log = function(){
+    if (level < 4 && !/(ERROR|WARN|INFO|VERBOSE)(%c|$)/.test(arguments[0]) )
         return
     _log.apply(this,arguments)
 }

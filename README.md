@@ -1,6 +1,6 @@
 Debug extend
 ============
-Extends [debug](https://www.npmjs.com/package/debug) with verbosity levels
+Extends [debug](https://www.npmjs.com/package/debug) with verbosity levels. Compatible in browser also.
 
 ```javascript
 //Require this only one time in your entry file
@@ -34,6 +34,10 @@ Debug.level(4)
 or by environment variable DEBUG_LEVEL
 ```bash
 DEBUG_LEVEL=4 node index.js
+```
+or using localStorage when in browser
+```bash
+localStorage.setItem('debug-level',4)
 ```
 
 To disable all output just use level 0
