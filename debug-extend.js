@@ -12,7 +12,7 @@ Debug.level = function(n){
 //Detect if we are using debug in browser
 if (Debug.storage) {
     try {
-        let userLevel = Debug.storage.getItem('debug-level')
+        var userLevel = Debug.storage.getItem('debug-level')
         if (userLevel){
             Debug.level(userLevel)
         }
